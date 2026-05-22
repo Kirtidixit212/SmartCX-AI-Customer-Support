@@ -35,20 +35,8 @@ function RegisterPage() {
 
       const response = await api.post("/auth/register", formData);
 
-      localStorage.setItem("userId", response.data.user_id);
-      localStorage.setItem("userName", response.data.name);
-      localStorage.setItem("userEmail", response.data.email);
-      localStorage.setItem("userRole", response.data.role);
-
-      alert("Registration successful.");
-
-      if (response.data.role === "admin") {
-        navigate("/admin-dashboard");
-      } else if (response.data.role === "agent") {
-        navigate("/agent-dashboard");
-      } else {
-        navigate("/");
-      }
+      alert("Registration successful. Please login to continue.");
+      navigate("/login");
     } catch (error) {
       console.error("Register error:", error.response?.data || error.message);
       alert(error.response?.data?.detail || "Registration failed.");
